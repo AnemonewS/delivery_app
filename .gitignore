@@ -2,3 +2,6 @@
 logs/
 node_modules/
 venv/
+static
+.static
+/static

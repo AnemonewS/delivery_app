@@ -5,6 +5,7 @@ from pathlib import Path
 from decouple import config, Csv, AutoConfig
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+GENERAL_DIR = config('GENERAL_DIR')
 
 SECRET_KEY = 'django-insecure-xawdg(l0ez7_gxt%$5jj(kq1@zwnd^(n&r8=w0wuj0auhdladm'
 
@@ -24,6 +25,9 @@ INSTALLED_APPS = \
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+
+        'core',
+
     ] + APPS
 
 MIDDLEWARE = [
@@ -35,8 +39,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # apps
-    'core',
 ]
 
 ROOT_URLCONF = 'delivery_app.urls'
@@ -94,6 +96,17 @@ USE_I18N = True
 
 USE_TZ = True
 
+# MEDIA
+
 STATIC_URL = 'static/'
 
+STATIC_ROOT = os.path.join(GENERAL_DIR, 'static')
+
+STATICFILES_STORAGE = config('STATICFILES_STORAGE')
+
+MEDIA_ROOT = os.path.join(GENERAL_DIR, 'media')
+MEDIA_URL = "/media/"
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/'
