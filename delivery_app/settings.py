@@ -7,7 +7,7 @@ from decouple import config, Csv, AutoConfig
 BASE_DIR = Path(__file__).resolve().parent.parent
 GENERAL_DIR = config('GENERAL_DIR')
 
-SECRET_KEY = 'django-insecure-xawdg(l0ez7_gxt%$5jj(kq1@zwnd^(n&r8=w0wuj0auhdladm'
+SECRET_KEY = config('SECRET_KEY')
 
 DEBUG = True
 
