@@ -9,9 +9,9 @@ GENERAL_DIR = config('GENERAL_DIR')
 
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = True
+DEBUG = config('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 APPS = [
     'rest_framework',
@@ -27,6 +27,7 @@ INSTALLED_APPS = \
         'django.contrib.staticfiles',
 
         'core',
+        'restaurant',
 
     ] + APPS
 
@@ -88,13 +89,15 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
+
+AUTH_USER_MODEL = 'core.User'
 
 # MEDIA
 
