@@ -15,6 +15,10 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
 APPS = [
     'rest_framework',
+    'oauth2_provider',
+    'social_django',
+    'drf_social_oauth2',
+
 ]
 
 INSTALLED_APPS = \
@@ -28,6 +32,7 @@ INSTALLED_APPS = \
 
         'core',
         'restaurant',
+        'customer',
 
     ] + APPS
 
@@ -56,6 +61,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -113,3 +120,17 @@ MEDIA_URL = "/media/"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
+
+AUTHENTICATION_BACKENDS = (
+    'drf_social_oauth2.backends.DjangoOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+# TODO Россия заблокировала бургерные соц.сети, доделать потом
+SOCIAL_AUTH_FACEBOOK_KEY = config('SOCIAL_AUTH_FACEBOOK_KEY')
+SOCIAL_AUTH_FACEBOOK_SECRET = config('SOCIAL_AUTH_FACEBOOK_SECRET')
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}

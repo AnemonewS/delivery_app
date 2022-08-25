@@ -11,7 +11,7 @@ def index(request):
     return render(request, 'index.html')
 
 
-def restaurant_sign_up(request):
+def sign_up(request):
     user_form = UserForm()
     rest_form = RestaurantForm()
 

@@ -21,12 +21,14 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-4 mx-auto auth-content">
+                    <h1 class="text-center">Регистрация</h1>
+                    <hr>
                     <form class="signup_form" action="" method="post" enctype="multipart/form-data">
                         <div class="form-container">
-                            {% csrf_token %} {{ user_form }}
-
+                            {% csrf_token %} {{ rest_form }}
+                            <hr>
                         </div>
-                        <button class="btn btn-primary" type="submit">Присоединиться</button>
+                        <button class="btn btn-success" type="submit">Присоединиться</button>
                     </form>
                 </div>
             </div>
