@@ -1,9 +1,5 @@
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-
-from core.forms import UserForm, RestaurantForm
-from core.models import User
+from django.shortcuts import render
 
 
 @login_required(login_url='/auth/sign_in/')
@@ -11,27 +7,21 @@ def index(request):
     return render(request, 'index.html')
 
 
-def sign_up(request):
-    user_form = UserForm()
-    rest_form = RestaurantForm()
+@login_required(login_url='/auth/sign_in/')
+def user_account(request):
+    return render(request, 'restaurant/user_account.html', {})
 
-    if request.method == 'POST':
-        user_form = UserForm(request.POST)
-        rest_form = RestaurantForm(request.POST, request.FILES)
 
-        if user_form.is_valid() and rest_form.is_valid():
-            new_user = User.objects.create_user(**user_form.cleaned_data)
-            new_restaurant = rest_form.save(commit=False)
-            new_restaurant.user = new_user
-            new_restaurant.save()
+@login_required(login_url='/auth/sign_in/')
+def meal(request):
+    return render(request, 'restaurant/meal.html', {})
 
-            login(request, authenticate(
-                username=user_form.cleaned_data['username'],
-                password=user_form.cleaned_data['password']
-            ))
 
-            return redirect('/')
+@login_required(login_url='/auth/sign_in/')
+def order(request):
+    return render(request, 'restaurant/order.html', {})
 
-    return render(request, 'account/sign_up.html',
-                  {'user_form': user_form,
-                   'rest_form': rest_form})
+
+@login_required(login_url='/auth/sign_in/')
+def report(request):
+    return render(request, 'restaurant/report.html', {})

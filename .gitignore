@@ -8,7 +8,7 @@ static
 .env/
 env
 .env
-media/
-.media
+media/*
+!*media
 media
-delivery_app/general/media/
+.media/
