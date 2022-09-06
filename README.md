@@ -1,2 +1,2 @@
 # delivery_app
-delivery app
+Mobile and web application with restaurant functionality, based on Python, Django + flutter
